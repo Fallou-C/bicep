@@ -2,7 +2,7 @@
 
 int main(void){
 	char *username = (char*)malloc(BUFFSIZE*sizeof(char));
-	char *prompt = (char*)malloc(BUFFSIZE*sizeof(char));
+	char *prompt = NULL;
 	bool run = true;
 
 	user_name(username,BUFFSIZE);
@@ -22,10 +22,14 @@ int main(void){
 		{
 			add_history(prompt);
 			ExecuteCommande(prompt);
+			free(prompt);
 		}
 	}
 	printf(" "ANSI_COLOR_MAGENTA" Au revoir ദ്ദി(◝ ⩊ ◜).ᐟ  "ANSI_COLOR_RESET"\n");
 	write_history(HIST);
+	HISTORY_STATE *state = history_get_history_state();
+	history_set_history_state(state);
+	free(state);
 	free(username);
 	free(prompt);
 	return 0;
