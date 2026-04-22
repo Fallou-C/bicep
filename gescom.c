@@ -113,6 +113,21 @@ int beuip(int N, char *P[]){
 		}
 		printf("Serveur lancé avec le PID %d\n", pid);
 	}
+	else if(!strcmp("list",P[1])){
+		char* Q[2] = {"client","3"}; // on regarde la liste
+		client(2,Q);
+	}
+	else if(!strcmp("message",P[1])){
+		if(!strcmp("all",P[2])) // broadcat
+		{
+			char* Q[3] = {"client","5",P[3]};
+			client(3,Q);
+		}
+		else{ //message à un individu 
+			char* Q[4] = {"client","4",P[2],P[3]};
+			client(4,Q);
+		}
+	}
 	else if(!strcmp("stop",P[1])){
 		if (pid == -1) {
             printf("Aucun serveur à arrêter.\n");

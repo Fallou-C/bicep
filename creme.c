@@ -93,7 +93,6 @@ int serveur(int argc, char* P[]) {
         }
         // CODE 3 : Liste 
         else if (code == '3' && client_addr.sin_addr.s_addr == inet_addr("127.0.0.1")) {
-            printf("\n--- Liste des connectés (%d) ---\n", nb_contacts);
             for (int i = 0; i < nb_contacts; i++) {
                 printf("%d. %s [%s]\n", i + 1, table[i].pseudo, inet_ntoa(table[i].ip));
             }
